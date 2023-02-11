@@ -1,8 +1,9 @@
 const inquirer= require('inquirer');
 
 // TODO: Create an array of questions for user input
-const questions = ([
-    {
+inquirer
+    .prompt ([
+     {
         type: 'input',
         name: 'project',
         message: 'What is the title of your project?',
@@ -15,7 +16,7 @@ const questions = ([
       {
         type: 'input',
         name: 'install',
-        message: 'Enter installation instructions',
+        message: 'Whar are the steps to install your project?',
       },
       {
         type: 'input',
@@ -42,7 +43,14 @@ const questions = ([
         name: 'email',
         message: 'Enter your email.',
       },
-]);
+])
+.then((answers) => {
+    const htmlPageContent = generateHTML(answers);
+
+    fs.writeFile('index.html', htmlPageContent, (err) =>
+      err ? console.log(err) : console.log('Successfully created index.html!')
+    );
+  });
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
