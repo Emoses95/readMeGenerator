@@ -1,6 +1,8 @@
 const inquirer= require('inquirer');
+const generateMarkdown= require('./Develop/utils/generateMarkdown');
+const fs= require('fs');
 
-// TODO: Create an array of questions for user input
+//  an array of questions for user input
 inquirer
     .prompt ([
      {
@@ -16,7 +18,7 @@ inquirer
       {
         type: 'input',
         name: 'install',
-        message: 'Whar are the steps to install your project?',
+        message: 'What are the steps to install your project?',
       },
       {
         type: 'input',
@@ -43,20 +45,17 @@ inquirer
         name: 'email',
         message: 'Enter your email.',
       },
+      {
+        type:'list',
+        name: 'license',
+        message:'Would you like to choose a license?',
+        choices:["MIT",'BSD','NONE']
+      }
 ])
 .then((answers) => {
-    const htmlPageContent = generateHTML(answers);
+    const readMeContent = generateMarkdown(answers);
 
-    fs.writeFile('index.html', htmlPageContent, (err) =>
-      err ? console.log(err) : console.log('Successfully created index.html!')
+    fs.writeFile('example.md', readMeContent, (err) =>
+      err ? console.log(err) : console.log('Successfully created README.md!')
     );
   });
-
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
-
-// TODO: Create a function to initialize app
-function init() {}
-
-// Function call to initialize app
-init();

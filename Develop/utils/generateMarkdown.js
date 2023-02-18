@@ -1,46 +1,68 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
-function renderLicenseBadge(license) {}
+// function returns badge
+function renderLicenseBadge(license) {
+  if(license){
+    return `![badmath](https://img.shields.io/badge/license-${license}-blue.svg)`
+    return ''
+  }
+}
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) {}
+//  a function that returns the license link
+function renderLicenseLink(license) {
+  if(license){
+    return '-[licenses](#licenses)'
+  }else{
+    return ''
+  }
+}
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {}
+// a function that returns the license section of README
+function renderLicenseSection(license) {
+  if(license){
+    return' ##license: '
+  }else{
+    return''
+  }
+}
 
-// TODO: Create a function to generate markdown for README
+// a function to generate markdown for README
 function generateMarkdown(data) {
-  return `# ${data.title}
-    ## Description
-   
-    -What was your motiviation?
-    -Why did you build this project?
-    -what problem does it solve?
-    -what did you learn?
+  return `# ${data.project}
+   ${renderLicenseBadge(data.license)}
+## description:
+   ${data.description}
   
-    #Table of Content
+  # Table of Content
 
-    -[description](#description)
-    -[installation](#installation)
-    -[usage](#usage)
-    -[licenses](#licenses)
-    -[contribution](#contribution)
-    -[test](#test)
-    -[username](#username)
-    -[profile](#profile)
+  -[description](#description)
+  -[installation](#installation)
+  -[usage](#usage)
+  ${renderLicenseLink(data.license)}
+  -[contribution](#contribution)
+  -[test](#test)
+  -[github](#github)
+  -[email](#email)
 
-    ##Installation
+  ## installation:
+    ${data.install}
 
-    What are the steps required to install your project?
+   ## usage:
+    ${data.usage}
 
-    ##Usage
+  ${renderLicenseSection(data.license)}
+    ${data.license}
 
-    
+  ## contribution:
+  ${data.contribution}
+
+   ## tests:
+  ${data.test}
+
+   ## contact:
+  - github: ${data.github}
+  - email: ${data.email}
 
 
-
+ 
   
 
  
